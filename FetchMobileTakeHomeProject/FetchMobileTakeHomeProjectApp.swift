@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct FetchMobileTakeHomeProjectApp: App {
+    @StateObject var recipesViewModel = RecipesViewModel(recipeService: RecipeService())
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RecipesView()
+                .preferredColorScheme(recipesViewModel.isDarkMode ? .dark : .light)
+                .environmentObject(recipesViewModel)
         }
     }
 }
